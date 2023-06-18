@@ -9,7 +9,7 @@ export function IssueCard({ body, title, created_at }: Issue) {
             <IssueCardWrapper>
                 <TitleWrapper>
                     <IssueCardTitle>{title}</IssueCardTitle>
-                    <span>{created_at}</span>
+                    <span>{formatDate(created_at)}</span>
                 </TitleWrapper>
                 <p>{body}</p>
             </IssueCardWrapper>

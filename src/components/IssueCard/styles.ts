@@ -4,20 +4,24 @@ import { styled } from 'styled-components';
 export const IssueCardContainer = styled.div`
 background: ${props => props.theme['base-post']};
 border-radius: 10px;
-min-height: 210px;
+height: 210px;
 
 p {
-    color: ${props => props.theme['base-text']};
-    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
     overflow: hidden;
+    -webkit-line-clamp: 4;
+     color: ${(props) => props.theme['base-text']};
+
 }
 `
 
 export const IssueCardWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 32px;
     gap: 1rem;
+    
 `
 
 export const IssueCardTitle = styled.h3`
@@ -26,5 +30,6 @@ export const IssueCardTitle = styled.h3`
 
 export const TitleWrapper = styled.div`
     display: flex;
+    color: ${props => props.theme['base-span']};
     justify-content: space-between;
 `
