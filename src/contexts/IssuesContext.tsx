@@ -8,6 +8,7 @@ interface IssuesContextProps {
   user?: User
   issues?: Issue[]
   singleIssue?: Issue
+  GetIssues?: (query?: string) => void
 }
 
 export const IssuesContext = createContext({} as IssuesContextProps)
@@ -19,27 +20,29 @@ export const IssuesContextProvider = ({
 }) => {
   const [user, setUser] = useState<User>()
   const [issues, setIssues] = useState<Issue[]>([])
+
   const GetUser = useCallback(async () => {
     const { data } = await api.get<User>('users/Suzei')
     setUser(data)
   }, [])
 
   const GetIssues = useCallback(async (query?: string) => {
-    const { data } = await api.get<Issue[]>('/repos/Suzei/github-posts/issues', {
+    console.log('Essa é a query:', query)
+    console.log('teste')
+    const response = await api.get<Issue[]>(`/search/issues`, {
       params: {
-        q: query,
+        q: `repo:Suzei/github-posts ${query}`,
       },
     })
-    setIssues(data)
-    console.log(issues)
+    setIssues(response.data.items)
   }, [])
 
   useEffect(() => {
     GetUser()
-    GetIssues()
+    GetIssues('')
   }, [])
 
   return (
-    <IssuesContext.Provider value={{ user, issues }}>{children}</IssuesContext.Provider>
+    <IssuesContext.Provider value={{ user, issues, GetIssues }}>{children}</IssuesContext.Provider>
   )
 }

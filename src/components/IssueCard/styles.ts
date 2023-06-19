@@ -1,9 +1,12 @@
+import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 
-export const IssueCardContainer = styled.div`
+export const IssueCardContainer = styled(Link)`
 background: ${props => props.theme['base-post']};
 border-radius: 10px;
+text-decoration: none;
+
 height: 210px;
 
 p {
@@ -11,6 +14,7 @@ p {
     -webkit-box-orient: vertical;
     overflow: hidden;
     -webkit-line-clamp: 4;
+    
      color: ${(props) => props.theme['base-text']};
 
 }
