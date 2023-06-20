@@ -3,9 +3,13 @@ import {
   Buildings,
   Users,
   ArrowSquareUpRight,
+  ChatCircleDots,
+  CalendarBlank,
+  CaretLeft
 } from 'phosphor-react'
 import { IssuesContext } from '../../contexts/IssuesContext'
 import {
+  BackTo,
   UserContainer,
   UserDescription,
   UserInfo,
@@ -14,6 +18,8 @@ import {
   UserWrapper,
 } from './styles'
 import { useContextSelector } from 'use-context-selector'
+import { formatDate } from '../../utils/formatter'
+import { Link } from 'react-router-dom'
 
 interface HeaderCardProps {
   variant: 'issue' | 'user'
@@ -29,7 +35,7 @@ export function HeaderCard({ variant }: HeaderCardProps) {
 
   return (
     <UserContainer>
-      <UserWrapper>
+      <UserWrapper variant={variant}>
         {variant === 'user' ? (
           <>
             <img src={user?.avatar_url} alt="Imagem de usuário" />
@@ -62,7 +68,36 @@ export function HeaderCard({ variant }: HeaderCardProps) {
             </UserInfo>
           </>
         ) : (
-          <h2>oi</h2>
+          <>
+            <UserWrapper variant={variant}>
+              <BackTo>
+                <Link to="/"><CaretLeft /> Voltar</Link>
+
+                <Link to={singleIssue?.html_url}>
+                  Github <ArrowSquareUpRight size={18} weight="bold" />
+                </Link>
+              </BackTo>
+              <UserTitle>
+                <h2>{singleIssue?.title}</h2>
+              </UserTitle>
+              <UserTrivia>
+                <div>
+                  <GithubLogo size={18} />
+                  <span>{singleIssue?.user.login}</span>
+                </div>
+
+                <div>
+                  <ChatCircleDots size={18} />
+                  <span>{singleIssue?.comments} comentários</span>
+                </div>
+
+                <div>
+                  <CalendarBlank size={18} />
+                  <span>há {singleIssue?.created_at && formatDate(singleIssue?.created_at)}</span>
+                </div>
+              </UserTrivia>
+            </UserWrapper>
+          </>
         )}
       </UserWrapper>
 

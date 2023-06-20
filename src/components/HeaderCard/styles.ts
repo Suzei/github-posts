@@ -1,4 +1,9 @@
-import { styled } from 'styled-components'
+import { Link } from 'react-router-dom'
+import { css, styled } from 'styled-components'
+
+interface WrapperProps {
+  variant: "user" | "issue"
+}
 
 export const UserContainer = styled.div`
   margin-top: -2rem;
@@ -9,11 +14,36 @@ export const UserContainer = styled.div`
   border-radius: 10px;
 `
 
-export const UserWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 148px 1fr;
+export const BackTo = styled.div`
+  display: flex;
   align-items: center;
-  padding: 2.5rem 2rem;
+  justify-content: space-between;
+  
+  span, a {
+    color: ${props => props.theme['blue']};
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+  }
+
+  a {
+    gap: 0.2rem
+  }
+
+`
+
+export const UserWrapper = styled.div<WrapperProps>`
+  display: ${props => props.variant === 'user' ? 'grid' : 'flex'};
+  min-height: 168px;
+  justify-content: center;
+  ${props =>
+    props.variant === 'issue'
+      ? css` padding: 1rem; ; flex-direction: column;
+  `: css` padding: 2.5rem 2rem;   align-items: center; grid-template-columns: 148px 1fr;
+`
+
+  };
   gap: 1.5rem;
   img {
     height: 148px;
