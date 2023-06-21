@@ -5,9 +5,12 @@ import { styled } from 'styled-components';
 export const IssueCardContainer = styled(Link)`
 background: ${props => props.theme['base-post']};
 border-radius: 10px;
+outline: none;
 text-decoration: none;
-
+transition: border 0.5s;
 height: 210px;
+
+
 
 p {
     display: -webkit-box;
@@ -35,5 +38,11 @@ export const IssueCardTitle = styled.h3`
 export const TitleWrapper = styled.div`
     display: flex;
     color: ${props => props.theme['base-span']};
+    align-items: center;
+    gap: 3px;
     justify-content: space-between;
+
+    span {
+        white-space: nowrap;
+    }
 `
