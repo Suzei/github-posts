@@ -1,6 +1,7 @@
 # Github Posts
 
 Github Posts segue a linha dos desafios propostos na plataforma da Rocketseat, especificamente do #3 da trilha Ignite
+![Imagem do projeto github-posts](image.png)
 
 ## Como rodar o projeto
 
@@ -19,4 +20,9 @@ Github Posts segue a linha dos desafios propostos na plataforma da Rocketseat, e
 
 Para formatação de datas, nas diferenças entre um post e outro, foi usado o date-fns, especificamente a função <b>formatDistance</b>.
 
+![Alt text](image-1.png)
+![Alt text](image-2.png)
+
 Na formatação do body da issue em si, utilizei o react-markdown para ler todo o conteúdo, assim como utilizei o plugin react-syntax-highligther para destacar qualquer linha de código presente no body em questão.
+
+![Alt text](image-3.png)
