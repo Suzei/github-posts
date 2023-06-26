@@ -12,6 +12,7 @@ div {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
+    margin: 1rem 0;
 
     h3 {
         color: ${props => props.theme["base-title"]}
